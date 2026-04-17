@@ -1,0 +1,535 @@
+/* ============================================================
+   Financial Tracker - style.css
+   ============================================================ */
+
+/* ── Google Font ── */
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #f4f6fb;
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+.custom-scrollbar::-webkit-scrollbar { width: 5px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #c7d2e7; border-radius: 4px; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+    background: #fff;
+    border-bottom: 1px solid #e8ecf4;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 16px rgba(91,78,255,0.06);
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, #5b4eff 0%, #7c3aed 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(91,78,255,0.28);
+}
+
+.site-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #1a1d2e;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+}
+
+/* ── DB Badge ── */
+.db-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+.db-badge.connected { background: #dcfce7; color: #166534; }
+.db-badge.error     { background: #fee2e2; color: #991b1b; }
+.db-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #00c98d;
+    display: inline-block;
+    flex-shrink: 0;
+}
+.db-badge.error .db-dot { background: #f43f5e; }
+
+/* ============================================================
+   NAVIGATION (Router)
+   ============================================================ */
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-decoration: none;
+    transition: all 0.18s ease;
+}
+.nav-link:hover {
+    background: #f0eeff;
+    color: #5b4eff;
+}
+.nav-link.active {
+    background: linear-gradient(135deg, #5b4eff 0%, #7c3aed 100%);
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(91,78,255,0.3);
+}
+
+/* ============================================================
+   ROUTER — PAGE SECTIONS
+   ============================================================ */
+.page-section {
+    display: none;
+    animation: fadeIn 0.25s ease-out;
+}
+.page-section.active {
+    display: block;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+.page-header { border-left: 4px solid #5b4eff; padding-left: 16px; }
+.page-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1a1d2e;
+    letter-spacing: -0.5px;
+}
+.page-subtitle { font-size: 0.88rem; color: #9ca3af; margin-top: 2px; }
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(30,30,60,0.07);
+    border: 1px solid #f0f2f8;
+}
+
+/* ── Stat Cards ── */
+.stat-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(30,30,60,0.07);
+    border: 1px solid #f0f2f8;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.18s, box-shadow 0.18s;
+}
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(30,30,60,0.12);
+}
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    border-radius: 0 16px 0 80px;
+    opacity: 0.07;
+}
+.stat-card.balance::before  { background: #5b4eff; }
+.stat-card.income-card::before { background: #00c98d; }
+.stat-card.expense-card::before { background: #ff4d6d; }
+
+.stat-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    color: #5b4eff;
+}
+.income-icon { color: #00c98d; }
+.expense-icon { color: #ff4d6d; }
+
+.stat-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #9ca3af;
+}
+.stat-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #1a1d2e;
+    margin-top: 6px;
+    line-height: 1.1;
+}
+.stat-note { font-size: 0.78rem; color: #b0b8cc; margin-top: 6px; }
+
+/* ============================================================
+   SECTION TITLE
+   ============================================================ */
+.section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1d2e;
+}
+
+/* ============================================================
+   FORM CONTROLS
+   ============================================================ */
+.form-label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 5px;
+    letter-spacing: 0.2px;
+}
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #e5e9f0;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-family: inherit;
+    background: #fafbfd;
+    color: #1a1d2e;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+}
+.form-control:focus {
+    border-color: #5b4eff;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(91,78,255,0.12);
+}
+.form-control-sm {
+    padding: 7px 12px;
+    border: 1.5px solid #e5e9f0;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-family: inherit;
+    background: #fafbfd;
+    color: #374151;
+    outline: none;
+    transition: border-color 0.15s;
+}
+.form-control-sm:focus {
+    border-color: #5b4eff;
+    box-shadow: 0 0 0 2px rgba(91,78,255,0.1);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #5b4eff 0%, #7c3aed 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 11px 22px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.18s, transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 14px rgba(91,78,255,0.3);
+    font-family: inherit;
+}
+.btn-primary:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(91,78,255,0.38);
+}
+
+.btn-danger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff5f7;
+    color: #ff4d6d;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 11px 22px;
+    border-radius: 10px;
+    border: 1.5px solid #ffd6df;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+    font-family: inherit;
+}
+.btn-danger:hover {
+    background: #ffe4ea;
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: linear-gradient(135deg, #00b37d 0%, #00c98d 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.82rem;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.18s, transform 0.15s;
+    font-family: inherit;
+    box-shadow: 0 3px 10px rgba(0,201,141,0.28);
+}
+.btn-success:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* ============================================================
+   TABLE
+   ============================================================ */
+.table-header {
+    background: #f8f9fd;
+    border-bottom: 1px solid #eef1f8;
+}
+.table-th {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #9ca3af;
+}
+
+/* ── Transaction Row ── */
+.tx-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 14px 20px;
+    transition: background 0.12s;
+    animation: slideIn 0.25s ease-out;
+}
+.tx-row:hover { background: #f8f9fd; }
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-6px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.tx-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+.tx-badge.income  { background: #d1fae5; color: #065f46; }
+.tx-badge.expense { background: #ffe4ea; color: #9f1239; }
+
+.tx-cat-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    background: #f0f2f8;
+    color: #6b7280;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.tx-amount {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+.tx-amount.income  { color: #00b37d; }
+.tx-amount.expense { color: #ff4d6d; }
+
+.btn-delete {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c7d2e7;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+    font-size: 0.95rem;
+}
+.btn-delete:hover { color: #ff4d6d; background: #fff5f7; }
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+.empty-state {
+    padding: 3rem;
+    text-align: center;
+    color: #c7d2e7;
+}
+.empty-state i { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
+
+.empty-chart {
+    text-align: center;
+    padding: 2.5rem 0;
+    color: #c7d2e7;
+}
+.empty-chart i { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+.empty-chart p { font-size: 0.82rem; }
+
+/* ============================================================
+   EXPENSE CHART BARS
+   ============================================================ */
+.chart-bar-wrap { margin-bottom: 12px; }
+.chart-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    margin-bottom: 4px;
+}
+.chart-bar-label span:first-child { font-weight: 600; color: #374151; }
+.chart-bar-label span:last-child  { color: #9ca3af; }
+.chart-bar-track {
+    width: 100%;
+    background: #f0f2f8;
+    border-radius: 99px;
+    height: 7px;
+    overflow: hidden;
+}
+.chart-bar-fill {
+    height: 7px;
+    border-radius: 99px;
+    transition: width 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Recent Transactions (mini) ── */
+.recent-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 14px;
+    background: #f8f9fd;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    transition: background 0.12s;
+}
+.recent-item:last-child { margin-bottom: 0; }
+.recent-item:hover { background: #f0f2f8; }
+.recent-label { font-weight: 600; font-size: 0.85rem; color: #374151; }
+.recent-meta  { font-size: 0.72rem; color: #9ca3af; margin-top: 1px; }
+.recent-amount { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.88rem; }
+
+/* ── Monthly Summary ── */
+.month-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: #f8f9fd;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+.month-label { font-weight: 700; color: #374151; min-width: 90px; }
+.month-in  { color: #00b37d; font-weight: 600; flex: 1; }
+.month-out { color: #ff4d6d; font-weight: 600; flex: 1; }
+.month-bal { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.9rem; }
+.month-bal.pos { color: #5b4eff; }
+.month-bal.neg { color: #ff4d6d; }
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+.toast {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.14);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.25s, transform 0.25s;
+    pointer-events: none;
+}
+.toast.show    { opacity: 1; transform: translateY(0); }
+.toast.success { background: #00c98d; color: #fff; }
+.toast.error   { background: #ff4d6d; color: #fff; }
+.toast.info    { background: #5b4eff; color: #fff; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+    background: #fff;
+    border-top: 1px solid #e8ecf4;
+    margin-top: 4rem;
+}
+.footer-brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #1a1d2e;
+    margin-bottom: 2px;
+}
+.footer-desc { font-size: 0.78rem; color: #9ca3af; }
+.footer-nav  { display: flex; flex-wrap: wrap; gap: 20px; list-style: none; padding: 0; margin: 0; }
+.footer-link {
+    font-size: 0.82rem;
+    color: #9ca3af;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s;
+}
+.footer-link:hover { color: #5b4eff; }
+.footer-copy {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f0f2f8;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #c7d2e7;
+}
